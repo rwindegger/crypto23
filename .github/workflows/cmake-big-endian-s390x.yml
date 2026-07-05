@@ -32,9 +32,12 @@ jobs:
         run: |
           cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build-s390x -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_SYSTEM_NAME=Linux \
+            -DCMAKE_SYSTEM_PROCESSOR=s390x \
             -DCMAKE_C_COMPILER=s390x-linux-gnu-gcc \
             -DCMAKE_CXX_COMPILER=s390x-linux-gnu-g++ \
-            -DCMAKE_CROSSCOMPILING_EMULATOR='qemu-s390x;-L;/usr/s390x-linux-gnu'
+            -DCMAKE_CROSSCOMPILING_EMULATOR="qemu-s390x;-L;/usr/s390x-linux-gnu" \
+            -DCTEST_CROSSCOMPILING_EMULATOR="qemu-s390x;-L;/usr/s390x-linux-gnu"
 
       - name: Build
         run: cmake --build ${{ github.workspace }}/build-s390x
