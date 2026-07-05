@@ -38,7 +38,7 @@ namespace crypto23 {
             std::uint8_t q = 1;
 
             do {
-                p = p ^ (p << 1) ^ (p & 0x80 ? 0x1b : 0);
+                p = static_cast<std::uint8_t>(p ^ (p << 1) ^ (p & 0x80 ? 0x1b : 0));
 
                 q ^= q << 1;
                 q ^= q << 2;
