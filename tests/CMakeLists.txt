@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 3.31)
 
 CPMAddPackage("gh:google/googletest#v1.17.0")
 

@@ -86,8 +86,8 @@ jobs:
         if: matrix.os == 'windows-latest' && matrix.build_type == 'Debug'
         shell: pwsh
         run: |
-          covdbg --fetch-license --config .covdbg.yaml --output ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\bigint_tests.covdb ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\bigint_tests.exe
-          covdbg convert --format LCOV --input ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\bigint_tests.covdb --output ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\bigint_tests.lcov
+          covdbg --fetch-license --config .covdbg.yaml --output ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\crypto23_tests.covdb ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\crypto23_tests.exe
+          covdbg convert --format LCOV --input ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\crypto23_tests.covdb --output ${{ steps.strings.outputs.build-output-dir }}\tests\${{ matrix.build_type }}\crypto23_tests.lcov
 
       - name: Upload coverage reports to Codecov
         if: matrix.os == 'windows-latest' && matrix.build_type == 'Debug'
