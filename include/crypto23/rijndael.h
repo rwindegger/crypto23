@@ -617,10 +617,17 @@ namespace crypto23 {
             std::vector<std::byte> result{};
             result.resize(cipher_size);
             std::copy_n(buffer.begin(), N, result.begin());
-            std::fill_n(result.begin() + N, padding_value, static_cast<std::byte>(padding_value));
+            std::fill_n(
+                result.begin() + static_cast<std::vector<std::byte>::difference_type>(N),
+                padding_value,
+                static_cast<std::byte>(padding_value)
+            );
 
             for (auto b = 0uz; b < blocks; ++b) {
-                std::span<std::byte, block_size> block{result.begin() + b * block_size, block_size};
+                std::span<std::byte, block_size> block{
+                    result.begin() + static_cast<std::vector<std::byte>::difference_type>(b * block_size),
+                    block_size
+                };
                 encrypt_block(block, key);
             }
             return result;
@@ -665,7 +672,10 @@ namespace crypto23 {
         ) {
             std::vector<std::byte> result(buffer.begin(), buffer.end());
             for (auto b = 0uz; b < N / block_size; ++b) {
-                std::span<std::byte, block_size> block{result.begin() + b * block_size, block_size};
+                std::span<std::byte, block_size> block{
+                    result.begin() + static_cast<std::vector<std::byte>::difference_type>(b * block_size),
+                    block_size
+                };
                 decrypt_block(block, key);
             }
 
@@ -685,7 +695,10 @@ namespace crypto23 {
             auto const N = std::ranges::size(buffer);
             std::vector<std::byte> result(buffer.begin(), buffer.end());
             for (auto b = 0uz; b < N / block_size; ++b) {
-                std::span<std::byte, block_size> block{result.begin() + b * block_size, block_size};
+                std::span<std::byte, block_size> block{
+                    result.begin() + static_cast<std::vector<std::byte>::difference_type>(b * block_size),
+                    block_size
+                };
                 decrypt_block(block, key);
             }
 
@@ -700,7 +713,10 @@ namespace crypto23 {
             std::span<std::byte const, key_size> const &key
         ) {
             for (auto b = 0uz; b < N / block_size; ++b) {
-                std::span<std::byte, block_size> block{data.begin() + b * block_size, block_size};
+                std::span<std::byte, block_size> block{
+                    data.begin() + static_cast<std::array<std::byte, N>::difference_type>(b * block_size),
+                    block_size
+                };
                 decrypt_block(block, key);
             }
 
