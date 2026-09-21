@@ -1,6 +1,6 @@
 # crypto23
 [![codecov](https://codecov.io/gh/rwindegger/crypto23/graph/badge.svg?token=qzdShQ58dx)](https://codecov.io/gh/rwindegger/crypto23)
-[![covdbg](https://covdbg.com/badge.svg/)](https://covdbg.com/)
+[![covdbg - Windows coverage for C++](https://covdbg.com/badge.svg/)](https://covdbg.com/)
 
 `crypto23` is a modern C++23, header-only implementation of Rijndael (including AES variants).
 
